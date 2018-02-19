@@ -12,4 +12,8 @@ RUN apk add --update git curl openssh make && \
     sha256sum packer_${PACKER_VERSION}_linux_amd64.zip && \
     sha256sum -c packer_${PACKER_VERSION}_SHA256SUMS && \
     unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin && \
-    rm -f packer_${PACKER_VERSION}_linux_amd64.zip
+    rm -f packer_${PACKER_VERSION}_linux_amd64.zip && \
+    adduser -D -u 1000 packer
+
+USER packer
+ENV USER=packer
